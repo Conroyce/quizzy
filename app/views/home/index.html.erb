@@ -28,3 +28,17 @@
       </select>
    </form>
 </script>
+
+<script type="text/template" class="quiz-edit-template">
+  <a href="#" data-id="<%%= content.id %>" class="quiz-inspect"><p>Take Quiz</p></a>
+  <a href="#" data-id="<%%= content.id %>" class="quiz-inspect"><p>Edit Quiz</p></a>
+</script>
+
+<script type="text/template" class="edit-template">
+  <form>
+    <h3>Add Question/Answer</h3>
+    <input type="text" class="edit-quest" placeholder="Enter Question">
+    <input type="text" class="edit-ans" placeholder="Enter Answer">
+    <input type="submit" class="edit-submit">
+  </form>
+</script>
