@@ -10,12 +10,7 @@ $(function() {
           id:v.id
         }
       });
-      // var newElem = $('<h1>');
-      // newElem.text(v.title);
-      // quizDisplay.append(newElem);
-      // newElem.on('click',function() {
-      //   //what you do when you click on a quiz
-      // })
+  
        var $el = $(compiledTemplate);
        $('.quizzes-display').append($el);
     });
@@ -33,31 +28,36 @@ $(function() {
 
 $(function() {
   $('.quizzes-display').on('click','.quiz-inspect',function(e) {
+    e.preventDefault();
     var $quest = $(this).data('id');
+    $('.quest-form').html("");
+    $('.quizzes-display').html("");
     $.get('/quizzes/'+$quest+'/questions',function(data) {
-      // console.log(data);
-      var quizDisplay = $('.quizzes-display');
+
       data.forEach(function(v) {
-        var choices = v.choices.split(";");
-        // console.log(choices);
+        var choice = v.choices.split(";");
+        console.log(choice);
         var template = $('.quiz-questions-template').html();
-        // console.log(template);
         var uncompiledTemplate = _.template(template);
+
         var compiledTemplate = uncompiledTemplate({
           content: {
             question: v.question,
-            id:v.id,
+            id: v.id,
             answer: v.answer,
-            choices: choices
+            choices: choice
           }
         });
-        // console.log(compiledTemplate);
+
         var $el = $(compiledTemplate);
-        console.log($el.html())
-        $('.quizzes-display').append($el.html());
+        console.log($el);
+
+        $('.question-display').append($el);
       });
     });
     
   });
 })
+
+
 

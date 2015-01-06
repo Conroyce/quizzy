@@ -1,8 +1,8 @@
 <h2>Quizzy Quiz</h2>
 
-<p>Your single page app should go here.</p>
-<h3>Add a Quiz!</h3>
+
 <form action="/" class="quest-form">
+  <h3>Add a Quiz!</h3>
   <input type="text" placeholder="Enter Question" class="quest-value">
   <input type="submit" class="quest-submit">
 </form>
@@ -10,14 +10,21 @@
 <div class="quizzes-display">
 </div>
 
+<div class="question-display">
+</div>
+
 <script type="text/template" class="quiz-template">
   <a href="#" data-id="<%%= content.id %>" class="quiz-inspect"><p><%%= content.title %></p></a>
 </script>
 
 <script type="text/template" class="quiz-questions-template">
-  <h3><%%= content.question %></h3>
-  <form>
-    <%%= content.choices
-    <option value=
-  </form>     
+  <h3><%%= content.question %></h3><br>
+   <form>
+      <select>
+      <%% _.each(content.choices,function(x) { %>
+          <option value="<%%= x %>"><%%= x %></option>
+      <%% }); %> 
+      <input type="submit" class="quest-submit">   
+      </select>
+   </form>
 </script>
