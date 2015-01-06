@@ -1,28 +1,30 @@
 $(function() {
-  $.get('/quizzes',function(data) { 
-    var quizDisplay = $('.quizzes-display');
-    data.forEach(function(v) {
-      var template = $('.quiz-template').html();
-      var uncompiledTemplate = _.template(template);
-      var compiledTemplate = uncompiledTemplate({
-        content: {
-          title: v.title,
-          id:v.id
-        }
+  var getAll = function() {
+    $.get('/quizzes',function(data) { 
+      var quizDisplay = $('.quizzes-display');
+      data.forEach(function(v) {
+        var template = $('.quiz-template').html();
+        var uncompiledTemplate = _.template(template);
+        var compiledTemplate = uncompiledTemplate({
+          content: {
+            title: v.title,
+            id:v.id
+          }
+        });
+    
+         var $el = $(compiledTemplate);
+         $('.quizzes-display').append($el);
       });
-  
-       var $el = $(compiledTemplate);
-       $('.quizzes-display').append($el);
     });
-  });
 
 
-  $('.quest-form').on('click','.quest-submit',function(e) {
-    var $quiz = $('.quest-value').val();
-    $.post("/quizzes",{"quiz[title]": $quest },function(status) {
-      // console.log(status);
-    });
-  })
+    $('.quest-form').on('click','.quest-submit',function(e) {
+      var $quiz = $('.quest-value').val();
+      $.post("/quizzes",{"quiz[title]": $quest },function(status) {
+        // console.log(status);
+      });
+    })
+  }; 
 
 
   $('.quizzes-display').on('click','.quiz-inspect',function(e) {
@@ -43,6 +45,38 @@ $(function() {
     var $el = $(compiledTemplate);
     $('.quizzes-display').append($el);
 
+
+    $('.quizzes-display').on('click','.quiz-edit',function(e) {
+      e.preventDefault();
+      var $id = $(this).data("id");
+      var $title = $(this).html();
+      $('.quizzes-display').html("");
+      var template = $('.edit-template').html();
+      var uncompiledTemplate = _.template(template);
+      var compiledTemplate = uncompiledTemplate({
+          content: {
+            title: $title,
+            id:$id
+          }
+      });
+      var $el = $(compiledTemplate);
+      $('.quizzes-display').append($el);
+
+      $('.quizzes-display').on('click','.add-submit',function(e) {
+        e.preventDefault();
+        var $id = $('.add-quest').data("id");
+        console.log($id);
+        var $quest = $('.add-quest').val();
+        var $ans = $('input[name=ans]:checked').val();
+        console.log($quest + " " + $ans);
+        $.post('/quizzes/'+$id+"/questions",{
+          "question[question]": $quest,
+          "question[answer]": $ans,
+          "question[choices]": "true;false",
+          "question[type]": "boolean",
+        },function(data) {console.log(data)});
+      });                                       //WAS ABLE TO CREATE A QUESTION!!!
+    })
 
 
     $('.quizzes-display').on('click','.quiz-inspect',function(e) {
@@ -106,7 +140,7 @@ $(function() {
   });  
     
 
-  
+   getAll(); 
 });       
 
 

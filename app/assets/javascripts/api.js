@@ -3,3 +3,5 @@ window.API = (function() {
     getAll:getAll
   }
 })()
+
+//$(this.element).off disable click event. should be inside quizview.prototype.destroy
