@@ -14,7 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require underscore
-//= require ui
+//= require models/quiz
+//= require controllers/quiz_controller
+//= require views/index
+//= require app
 
 // 
 // Your Quizzy code should go here.

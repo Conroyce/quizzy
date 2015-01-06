@@ -14,7 +14,12 @@
 </div>
 
 <script type="text/template" class="quiz-template">
-  <a href="#" data-id="<%%= content.id %>" class="quiz-inspect"><p><%%= content.title %></p></a>
+  <h1>Here are the quizzes</h1>
+  <ul>
+    <%% _.each(quizzes, function(quiz) { %>
+      <li class="quiz" data-id="<%%= quiz.id %>"><%%= quiz.title %></li>
+    <%% }); %>
+  </ul>
 </script>
 
 <script type="text/template" class="quiz-questions-template">
