@@ -14,5 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require underscore
+//= require ui
+
 // 
 // Your Quizzy code should go here.
