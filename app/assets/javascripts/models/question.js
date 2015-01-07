@@ -23,6 +23,19 @@
     })
   };
 
+  Question.check = function(quiz_id,quest_id,answer,cb) {
+    $.ajax({
+      method: "GET",
+      url: "/quizzes/"+quiz_id+"/questions/"+quest_id+"/check?answer="+answer,
+      success:function(res) {
+        if (cb) {
+          return cb(res);
+        }
+      }
+      
+    })
+  }
+
   window.Models = window.Models || {};
   window.Models.Question = Question;
 })()
