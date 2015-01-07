@@ -23,15 +23,10 @@
 </script>
 
 <script type="text/template" class="quiz-questions-template">
-  <h3><%%= content.question %></h3><br>
-   <form>
-      <select class="quest-option">
-      <%% _.each(content.choices,function(x) { %>
-          <option value="<%%= x %>"><%%= x %></option>
-      <%% }); %> 
-      <input type="submit" class="quest-submit">   
-      </select>
-   </form>
+  <%% _.each(questions, function(question) { %>
+      <p><%%= question.question %></p>
+      
+  <%% }); %>
 </script>
 
 <script type="text/template" class="quiz-edit-template">

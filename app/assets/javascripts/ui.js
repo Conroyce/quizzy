@@ -145,7 +145,15 @@ $(function() {
 
 
  
-  
+ <h3><%%= content.question %></h3><br>
+   <form>
+      <select class="quest-option">
+      <%% _.each(content.choices,function(x) { %>
+          <option value="<%%= x %>"><%%= x %></option>
+      <%% }); %> 
+      <input type="submit" class="quest-submit">   
+      </select>
+   </form>
 
 
 
