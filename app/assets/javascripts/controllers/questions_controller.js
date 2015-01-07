@@ -7,6 +7,10 @@
     this.status = "clean";
   };
 
+  QuestionsController.prototype.editQuestions = function() {
+    var $el = $(this.parentElement);
+  }
+
   QuestionsController.prototype.showFirstQuestion = function() {
     var $el = $(this.parentElement);
     var $id = this.id;
