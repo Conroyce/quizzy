@@ -24,7 +24,7 @@
             $('.question-display').append("<p>Incorrect.</p>")      
           }
 
-          if (control.cnt+1 == control.parentElement.length-1) {
+          if (control.cnt == control.parentElement.length-1) {
               control.status = "end"; 
           } else {
           }   
