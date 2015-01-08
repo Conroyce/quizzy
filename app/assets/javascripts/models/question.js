@@ -36,6 +36,17 @@
     })
   }
 
+  Question.create = function(quiz_id,quest,ans,choices,type) {
+    $.post("/quizzes/"+quiz_id+"/questions",{
+          "question[question]": quest,
+          "question[answer]": ans,
+          "question[choices]": choices,
+          "question[type]": type,
+      },function(data) {
+        console.log(data);
+      })
+  };
+
   window.Models = window.Models || {};
   window.Models.Question = Question;
 })()

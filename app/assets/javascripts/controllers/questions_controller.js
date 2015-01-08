@@ -7,8 +7,8 @@
     this.status = "clean";
   };
 
-  QuestionsController.prototype.editQuestions = function() {
-    var $el = $(this.parentElement);
+  QuestionsController.prototype.createQuestion = function(quiz_id,quest,ans,choice,type) {
+     Models.Question.create(quiz_id,quest,ans,choice,type);
   }
 
   QuestionsController.prototype.showFirstQuestion = function() {
