@@ -47,6 +47,16 @@
       })
   };
 
+  Question.createScore = function(score,user,quiz_id) {
+    $.post("/scores",{
+      "score[score]": score,
+      "score[user]": user,
+      "quiz_id": quiz_id
+    }),function(data) {
+      console.log(data);
+    }
+  }
+
   window.Models = window.Models || {};
   window.Models.Question = Question;
 })()

@@ -35,6 +35,9 @@
     });
   }; 
 
+  QuestionsController.prototype.createScore = function(score,user,quiz_id) {
+    Models.Question.createScore(score,user,quiz_id);
+  };
 
   
 

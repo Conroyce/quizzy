@@ -43,8 +43,10 @@
               $('.question-display').html("");
               $('.question-display').append('<h3>You Finished with a score of ' + quest_controller.score + '</h3>');
           };
+          var $name = sessionStorage.name || "Guest";
+          quest_controller.createScore(quest_controller.score,$name,_this.questions[0].quiz_id)
 
-          setTimeout(function() { dispRes() },1000); //continue
+          setTimeout(function() { dispRes() },1000);
           setTimeout(function() { 
             $('.question-display').html("");
             var controller = new Controllers.Quiz($(".quizzes-display"));
@@ -65,17 +67,21 @@
 
       $('.question-display').on('click','.add-submit',function(e) {
         e.preventDefault();
-        var $ans = $('input[name=ans]:checked').val() || $('.blank-ans').val();
+        var $ans = $('input[name=ans]:checked').val() || $('.blank-ans').val() || $('.mult-ans').val();
         var $id = _this.questions[0].quiz_id;
-        var $quest = $('.add-quest').val() || $('.blank-quest').val();
-        
+        var $quest = $('.add-quest').val() || $('.blank-quest').val() || $('.mult-quest').val();
+        // console.log($ans+" "+$id+" "+$quest+" "+$('.mult-choice').val());
         if ($('.blank-ans').val()) {
           quest_controller.createQuestion($id,$quest,$ans,$ans,"blank");
-        } else { 
+        } else if($('.mult-ans').val()) { 
+          var $choice = $('.mult-choice').val();
+          quest_controller.createQuestion($id,$quest,$ans,$choice,"multiple");
+        } else {
           quest_controller.createQuestion($id,$quest,$ans,"true;false","boolean");
         }
           
         dispQuest('.quiz-questions-template');  
+        
       });
     });
       

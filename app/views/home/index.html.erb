@@ -1,11 +1,23 @@
 <h2>Quizzy Quiz</h2>
 
+<form action="" class="add-name">
+  <div class="name-add">
+    <h3>Enter Name to Keep Track of High Scores!</h3>
+    <input type="text" class="name-input" placeholder="Enter Name">
+    <input type="submit" class="name-submit">
+  </div>
+  <div class="name-show">
+    <p>Welcome, <span class="name"></span>!<a href="" class="quit">Sign Out</a>
+  </div>
+</form>
 
 <form action="/" class="quest-form">
   <h3>Add a Quiz!</h3>
   <input type="text" placeholder="Enter Question" class="quest-value">
   <input type="submit" class="quest-submit">
 </form>
+
+
 
 <div class="quizzes-display">
 </div>
@@ -14,6 +26,7 @@
 </div>
 
 <script type="text/template" class="quiz-template">
+
   <h1>Here are the quizzes</h1>
   <ul>
     <%% _.each(quizzes, function(quiz) { %>
@@ -45,14 +58,21 @@
 
 <script type="text/template" class="quiz-edit-template">
   <a href="" data-id="<%%= questions.id %>" class="quiz-inspect"><p>Take Quiz</p></a>
-  <a href="" data-id="<%%= questions.id %>" class="quiz-edit"><p>Edit Quiz</p></a>
+  <a href="" data-id="<%%= questions.id %>" class="quiz-edit"><p>Add Quiz</p></a>
 </script>
 
 <script type="text/template" class="edit-template">
   
     <h3>Add Question/Answer</h3>
+  <form>
+    <h4>Multiple Choice Question</h4>
+    <input type="text" data-id="<%%= questions.id %>" class="mult-quest" placeholder="Enter Question"><br>
+    <input type="text" class="mult-ans" placeholder="Enter Answer"><br>
+    <input type="text" class="mult-choice" placeholder="Enter Choices"><-Enter Choices With no space separated by a semi-colon<br>
+    <input type="submit" class="add-submit"> 
+  </form><br>  
   <form> 
-    <h4>Multiple Choice</h4> 
+    <h4>True/False Question</h4> 
     <input type="text" data-id="<%%= questions.id %>" class="add-quest" placeholder="Enter Question"><br>
     <input type="radio" name="ans" class="add-ans" value="true">True<br>
     <input type="radio" name="ans" class="add-ans" value="false">False<br>
