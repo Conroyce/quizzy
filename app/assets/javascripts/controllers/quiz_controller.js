@@ -10,6 +10,10 @@
     });
   };
 
+  QuizController.prototype.create = function(quiz) {
+    Models.Quiz.create(quiz)
+  };
+
   window.Controllers = window.Controllers || {};
   window.Controllers.Quiz = QuizController;
 })();

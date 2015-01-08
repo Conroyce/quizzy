@@ -31,9 +31,10 @@
     var $html = $(uncompiledTemplate({quizzes: _view.quizzes}));
     $el.append($html);
     
-    // $('.quest-form').on('click','.quest-submit',function() {
-    //   $('.')
-    // })
+    $('.quest-form').on('click','.quest-submit',function() {
+      var $quiz = $('.quest-value').val();
+      controller.create($quiz);
+    })
    
 
     $html.children('.quiz').on('click', function() {

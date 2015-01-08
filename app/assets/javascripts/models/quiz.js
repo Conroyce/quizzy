@@ -19,6 +19,18 @@
     });
   };
 
+  Quiz.create = function(quiz) {
+    $.ajax({
+      method: "POST",
+      url: "/quizzes",
+      data: {
+        "quiz[title]": quiz
+      }, success: function(data) {
+        console.log(data);
+      }
+    }); 
+  };
+
   Quiz.prototype.save = function(cb) {
     // use this.id, this.title to make ajax request
   };
