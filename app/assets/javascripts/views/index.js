@@ -11,7 +11,7 @@
     $html.children('.quiz').on('click', function() {
       var id = $(this).data("id");
 
-      var questionsController = new Controllers.Question(_view.element, id); //stuck here
+      var questionsController = new Controllers.Question(_view.element, id); 
       questionsController.showFirstQuestion();
     });
   };

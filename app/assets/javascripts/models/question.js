@@ -41,7 +41,7 @@
           "question[question]": quest,
           "question[answer]": ans,
           "question[choices]": choices,
-          "question[type]": type,
+          "question[question_type]": type
       },function(data) {
         console.log(data);
       })

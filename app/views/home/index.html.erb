@@ -24,14 +24,23 @@
 
 <script type="text/template" class="quiz-questions-template">
   <h3><%%= questions.question %></h3><br>
-   <form>
+
+  <%% if (questions.question_type == "blank") { %>
+    <form>
+      <input type="text" class="quest-option">
+      <input type="submit" class="quest-submit">
+    </form>  
+  <%% } else { %>
+    <form>
       <select class="quest-option">
       <%% _.each(questions.choices,function(x) { %>
           <option value="<%%= x %>"><%%= x %></option>
       <%% }); %> 
       <input type="submit" class="quest-submit">   
       </select>
-   </form>
+    </form>
+  <%% } %>  
+
 </script>
 
 <script type="text/template" class="quiz-edit-template">
@@ -40,11 +49,19 @@
 </script>
 
 <script type="text/template" class="edit-template">
-  <form>
+  
     <h3>Add Question/Answer</h3>
+  <form> 
+    <h4>Multiple Choice</h4> 
     <input type="text" data-id="<%%= questions.id %>" class="add-quest" placeholder="Enter Question"><br>
-    <input type="radio" name="ans" class="add-ans" value="True">True<br>
-    <input type="radio" name="ans" class="add-ans" value="False">False<br>
+    <input type="radio" name="ans" class="add-ans" value="true">True<br>
+    <input type="radio" name="ans" class="add-ans" value="false">False<br>
+    <input type="submit" class="add-submit">
+  </form><br>
+  <form>
+    <h4>Blank Question</h4>
+    <input type="text" data-id="<%%= questions.id %>" class="blank-quest" placeholder="Enter Question"><br>
+    <input type="text" data-id="<%%= questions.id %>" class="blank-ans" placeholder="Enter Answer"><br>
     <input type="submit" class="add-submit">
   </form>
 </script>
