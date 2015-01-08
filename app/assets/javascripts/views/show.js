@@ -1,10 +1,11 @@
 (function() {
   
 
-  var QuestView = function($el, questions) {
+  var QuestView = function($el, questions,controller) {
     this.element = $el;
     this.questions = questions;
-    var quest_controller = new Controllers.Question(this.questions);
+    quest_controller = controller
+    // var quest_controller = new Controllers.Question(this.questions);
     console.log(quest_controller);
     var _this = this;
     
@@ -36,7 +37,7 @@
         var quiz_id = _this.questions[quest_controller.cnt].quiz_id;
         var quest_id = _this.questions[quest_controller.cnt].id;
            
-        quest_controller.checkAnswer(quiz_id,quest_id,$ans,quest_controller); 
+        quest_controller.checkAnswer(quiz_id,quest_id,$ans,quest_controller,_this.questions.length); 
             
         if (quest_controller.status == "end") {
           var dispRes = function() {

@@ -13,25 +13,27 @@
 
   QuestionsController.prototype.showFirstQuestion = function() {
     var $el = $(this.parentElement);
-    var $id = this.id;
-    Models.Question.fetch($id,function(questions) {
-      var questView = new Views.Question($el, questions);
+    var _controller = this;
+    var id = this.id;
+    Models.Question.fetch(id,function(questions) {
+      var questView = new Views.Question($el, questions,_controller);
     });
   };
 
-  QuestionsController.prototype.checkAnswer = function(quiz_id,quest_id,ans,control) {
-    return Models.Question.check(quiz_id,quest_id,ans,function(res) {
-         if (res.correct) {
-            control.score++;
-            $('.question-display').append("<p>Correct!</p>")     
-          } else {
-            $('.question-display').append("<p>Incorrect.</p>")      
-          }
+  QuestionsController.prototype.checkAnswer = function(quiz_id,quest_id,ans,control,len) {
+    Models.Question.check(quiz_id,quest_id,ans,function(res) {
+      console.log(res.correct+" "+control.cnt);
+      if (res.correct) {
+        control.score++;
+        $('.question-display').append("<p>Correct!</p>")     
+      } else {
+        $('.question-display').append("<p>Incorrect.</p>")      
+      }
 
-          if (control.cnt == control.parentElement.length-1) {
-              control.status = "end"; 
-          } else {
-          }   
+      if (control.cnt == len-1) {
+          control.status = "end"; 
+      } else {
+      }   
     });
   }; 
 
