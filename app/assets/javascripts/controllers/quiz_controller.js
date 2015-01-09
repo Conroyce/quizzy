@@ -7,7 +7,7 @@
     var $el = $(this.parentElement);
     var _controller = this
     Models.Quiz.fetch(function(quizzes) {
-      var quizView = new Views.Quiz($el, quizzes, this);
+      var quizView = new Views.Quiz($el, quizzes, _controller);
     });
   };
 

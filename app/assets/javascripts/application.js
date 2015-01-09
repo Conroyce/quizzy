@@ -22,6 +22,7 @@
 //= require controllers/scores_controller
 //= require views/show
 //= require views/index
+//= require views/score_page
 //= require app
 
 // 

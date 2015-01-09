@@ -41,7 +41,7 @@
       var id = $(this).data("id");
 
       var questionsController = new Controllers.Question(_view.element, id); 
-      questionsController.showFirstQuestion();
+      questionsController.showFirstQuestion(quiz_controller);
     });
   };
   

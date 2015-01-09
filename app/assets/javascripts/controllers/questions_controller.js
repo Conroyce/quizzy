@@ -11,12 +11,13 @@
      Models.Question.create(quiz_id,quest,ans,choice,type);
   }
 
-  QuestionsController.prototype.showFirstQuestion = function() {
+  QuestionsController.prototype.showFirstQuestion = function(quiz_control) {
     var $el = $(this.parentElement);
     var _controller = this;
     var id = this.id;
+    var quiz_control = quiz_control
     Models.Question.fetch(id,function(questions) {
-      var questView = new Views.Question($el, questions,_controller);
+      var questView = new Views.Question($el, questions,_controller,quiz_control);
     });
   };
 

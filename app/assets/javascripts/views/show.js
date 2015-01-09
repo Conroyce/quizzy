@@ -1,9 +1,9 @@
 (function() {
   
-
-  var QuestView = function($el, questions,controller) {
+  var QuestView = function($el, questions,controller,quiz_control) {
     this.element = $el;
     this.questions = questions;
+    var quiz_controller = quiz_control
     var quest_controller = controller;
     var score_controller = new Controllers.Score($(".question-display"));
     console.log(quest_controller);
@@ -45,12 +45,12 @@
               $('.question-display').append('<h3>You Finished with a score of ' + quest_controller.score + '</h3>');
           };
           var $name = sessionStorage.name || "Guest";
-          score_controller.create(quest_controller.score,$name,_this.questions[0].quiz_id)
+          score_controller.create(quest_controller.score,$name,_this.questions[0].quiz_id);
 
           setTimeout(function() { dispRes() },1000);
           setTimeout(function() { 
             $('.question-display').html("");
-            quest_controller.showQuizzes(); 
+            quiz_controller.showQuizzes(); 
             
           },2500);
              
@@ -87,7 +87,7 @@
 
     $('.question-display').on('click','.score-check',function(e) {
       e.preventDefault();
-      
+      score_controller.showScores(_this.questions[0].id,quest_controller);
     })
       
  };
