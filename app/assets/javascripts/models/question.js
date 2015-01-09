@@ -37,14 +37,15 @@
   };
 
   Question.create = function(quiz_id,quest,ans,choices,type) {
-    $.post("/quizzes/"+quiz_id+"/questions",{
+    $.post("/quizzes/"+quiz_id+"/questions",
+      {
           "question[question]": quest,
           "question[answer]": ans,
           "question[choices]": choices,
           "question[question_type]": type
       },function(data) {
         console.log(data);
-      })
+      });
   };
 
 

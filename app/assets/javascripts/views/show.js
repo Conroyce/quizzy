@@ -1,5 +1,11 @@
 (function() {
   
+  var clear_all = function() {
+      $('.quizzes-display').html("");
+      $('.quest-form').hide();
+      $('.add-name').hide();
+  };
+
   var QuestView = function($el, questions,controller,quiz_control) {
     this.element = $el;
     this.questions = questions;
@@ -9,9 +15,6 @@
     console.log(quest_controller);
     var _this = this;
     
-    $('.quizzes-display').html("");
-    $('.quest-form').html("");
-
     var dispQuest = function(temp) {               
         $('.question-display').html("");
         var template = $(temp).html();
@@ -22,6 +25,13 @@
         var $el = $($html); 
         $('.question-display').append($el);         
     }; 
+
+    var dispRes = function() {
+        $('.question-display').html("");
+        $('.question-display').append('<h3>You Finished with a score of ' + quest_controller.score + '</h3>');
+    };
+    
+    clear_all();
 
     dispQuest('.quiz-edit-template'); 
 
@@ -39,20 +49,21 @@
            
         quest_controller.checkAnswer(quiz_id,quest_id,$ans,quest_controller,_this.questions.length); 
             
+        // quest_controller.next() ??
+
         if (quest_controller.status == "end") {
-          var dispRes = function() {
-              $('.question-display').html("");
-              $('.question-display').append('<h3>You Finished with a score of ' + quest_controller.score + '</h3>');
-          };
+          
           var $name = sessionStorage.name || "Guest";
           score_controller.create(quest_controller.score,$name,_this.questions[0].quiz_id);
 
-          setTimeout(function() { dispRes() },1000);
+          setTimeout(function() { dispRes() },1000); // possible new view >
           setTimeout(function() { 
             $('.question-display').html("");
+            $('.add-name').show();
+            $('.quest-form').show();
             quiz_controller.showQuizzes(); 
             
-          },2500);
+          },2500);                                   // possible new view <
              
         } else { 
           quest_controller.cnt++;  
@@ -63,26 +74,9 @@
      
     $('.question-display').on('click','.quiz-edit',function(e) {
       e.preventDefault();
-      dispQuest('.edit-template');
-
-      $('.question-display').on('click','.add-submit',function(e) {
-        e.preventDefault();
-        var $ans = $('input[name=ans]:checked').val() || $('.blank-ans').val() || $('.mult-ans').val();
-        var $id = _this.questions[0].quiz_id;
-        var $quest = $('.add-quest').val() || $('.blank-quest').val() || $('.mult-quest').val();
-        // console.log($ans+" "+$id+" "+$quest+" "+$('.mult-choice').val());
-        if ($('.blank-ans').val()) {
-          quest_controller.createQuestion($id,$quest,$ans,$ans,"blank");
-        } else if($('.mult-ans').val()) { 
-          var $choice = $('.mult-choice').val();
-          quest_controller.createQuestion($id,$quest,$ans,$choice,"multiple");
-        } else {
-          quest_controller.createQuestion($id,$quest,$ans,"true;false","boolean");
-        }
-          
-        dispQuest('.quiz-questions-template');  
-        
-      });
+      
+      var inter = new Controllers.Intermediate($('.quizzes'),quest_controller)
+      inter.showOptions(quest_controller);
     });
 
     $('.question-display').on('click','.score-check',function(e) {

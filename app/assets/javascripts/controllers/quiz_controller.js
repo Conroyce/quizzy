@@ -15,6 +15,15 @@
     Models.Quiz.create(quiz);
   };
 
+  QuizController.prototype.quit = function() {
+    sessionStorage.clear();
+    this.showQuizzes();
+  };
+  
+  QuizController.prototype.setUser = function(name) {
+    sessionStorage.name = name;
+  }
+
   window.Controllers = window.Controllers || {};
   window.Controllers.Quiz = QuizController;
 })();

@@ -20,9 +20,11 @@
 //= require controllers/quiz_controller
 //= require controllers/questions_controller
 //= require controllers/scores_controller
+//= require controllers/intermediate_controller
 //= require views/show
 //= require views/index
 //= require views/score_page
+//= require views/intermediate_page
 //= require app
 
 // 

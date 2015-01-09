@@ -91,7 +91,7 @@
   <h2>High Scores</h2>
   <ol>
     <%% _.each(scores,function(score) { %>
-      <li><%%= score.score %></li>
+      <li><%%= score.user %>: <%%= score.score %></li>
     <%% }) %>
   </ol>
 </script>

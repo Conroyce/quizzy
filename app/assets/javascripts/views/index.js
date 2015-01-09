@@ -14,18 +14,18 @@
     
     $('.quit').on('click',function(e) {
       e.preventDefault();
-      sessionStorage.clear();
-      $('.quizzes-display').html("");
-      quiz_controller.showQuizzes();
+      $('.quizzes-display').html(""); //controller should clear and display quizzes
+      quiz_controller.quit();
     })
     $('.name-add').on('click','.name-submit',function(e) {
       e.preventDefault();
       var $user = $('.name-input').val();
-      sessionStorage.user = $user;
+      quiz_controller.setUser($user);
       $('.name-add').hide();
       $('.name').html(sessionStorage.name);
       $('.name-show').show();
     })
+    
     var template = $('.quiz-template').html();
     var uncompiledTemplate = _.template(template);
     var $html = $(uncompiledTemplate({quizzes: _view.quizzes}));
