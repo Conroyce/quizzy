@@ -1,9 +1,9 @@
 (function() {
-  var QuizView = function($el, quizzes) {
+  var QuizView = function($el, quizzes, controller) {
     this.element = $el;
     this.quizzes = quizzes;
     var _view = this;
-    var controller = new Controllers.Quiz($(".quizzes-display"));
+    var quiz_controller = controller;
     if (sessionStorage.name) {
       $('.name-add').hide();
       $('.name').html(sessionStorage.name);
@@ -16,12 +16,12 @@
       e.preventDefault();
       sessionStorage.clear();
       $('.quizzes-display').html("");
-      controller.showQuizzes();
+      quiz_controller.showQuizzes();
     })
     $('.name-add').on('click','.name-submit',function(e) {
       e.preventDefault();
-      var $name = $('.name-input').val();
-      sessionStorage.name = $name;
+      var $user = $('.name-input').val();
+      sessionStorage.user = $user;
       $('.name-add').hide();
       $('.name').html(sessionStorage.name);
       $('.name-show').show();
@@ -33,7 +33,7 @@
     
     $('.quest-form').on('click','.quest-submit',function() {
       var $quiz = $('.quest-value').val();
-      controller.create($quiz);
+      quiz_controller.create($quiz);
     })
    
 

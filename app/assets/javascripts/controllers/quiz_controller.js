@@ -5,13 +5,14 @@
 
   QuizController.prototype.showQuizzes = function() {
     var $el = $(this.parentElement);
+    var _controller = this
     Models.Quiz.fetch(function(quizzes) {
-      var quizView = new Views.Quiz($el, quizzes);
+      var quizView = new Views.Quiz($el, quizzes, this);
     });
   };
 
   QuizController.prototype.create = function(quiz) {
-    Models.Quiz.create(quiz)
+    Models.Quiz.create(quiz);
   };
 
   window.Controllers = window.Controllers || {};

@@ -59,6 +59,7 @@
 <script type="text/template" class="quiz-edit-template">
   <a href="" data-id="<%%= questions.id %>" class="quiz-inspect"><p>Take Quiz</p></a>
   <a href="" data-id="<%%= questions.id %>" class="quiz-edit"><p>Add Quiz</p></a>
+  <a href="" data-id="<%%= questions.id %>" class="score-check"><p>Check High Scores</p></a>
 </script>
 
 <script type="text/template" class="edit-template">
@@ -86,7 +87,14 @@
   </form>
 </script>
 
-
+<script type="text/template" class="score-template">
+  <h2>High Scores</h2>
+  <ol>
+    <%% _.each(scores,function(score) { %>
+      <li><%%= score.score %></li>
+    <%% }) %>
+  </ol>
+</script>
 
 
 
