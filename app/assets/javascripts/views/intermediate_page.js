@@ -14,7 +14,7 @@
         $('.question-display').append($el);         
     }; 
 
-    dispQuest('.edit-template');
+    dispQuest('.add-template');
     $('.question-display').on('click','.add-submit',function(e) {
         e.preventDefault();
         var $ans = $('input[name=ans]:checked').val() || $('.blank-ans').val() || $('.mult-ans').val();

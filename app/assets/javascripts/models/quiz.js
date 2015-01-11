@@ -19,16 +19,40 @@
     });
   };
 
-  Quiz.create = function(quiz) {
+  Quiz.create = function(quiz,cb) {
     $.ajax({
       method: "POST",
       url: "/quizzes",
       data: {
         "quiz[title]": quiz
       }, success: function(data) {
-        console.log(data);
+        if(cb) {
+          cb(data)
+        }
       }
     }); 
+  };
+
+  Quiz.update = function(id,newTitle) {
+    $.ajax({
+      method: "PUT",
+      url: "/quizzes/"+id,
+      data: {
+        "quiz[title]":newTitle
+      }, success: function(data) {
+        console.log(data);
+      }
+    });
+  };
+
+  Quiz.delete = function(id) {
+    $.ajax({
+      method: "DELETE",
+      url: "/quizzes/"+id,
+      success: function(data) {
+        console.log(data);
+      }
+    });
   };
 
   Quiz.prototype.save = function(cb) {

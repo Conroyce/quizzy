@@ -4,6 +4,7 @@
     this.quizzes = quizzes;
     var _view = this;
     var quiz_controller = controller;
+    $('.question-display').html("");
     if (sessionStorage.name) {
       $('.name-add').hide();
       $('.name').html(sessionStorage.name);

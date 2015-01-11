@@ -25,6 +25,7 @@
 //= require views/index
 //= require views/score_page
 //= require views/intermediate_page
+//= require views/edit_page
 //= require app
 
 // 

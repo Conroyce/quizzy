@@ -57,12 +57,14 @@
 </script>
 
 <script type="text/template" class="quiz-edit-template">
-  <a href="" data-id="<%%= questions.id %>" class="quiz-inspect"><p>Take Quiz</p></a>
-  <a href="" data-id="<%%= questions.id %>" class="quiz-edit"><p>Add Quiz</p></a>
-  <a href="" data-id="<%%= questions.id %>" class="score-check"><p>Check High Scores</p></a>
+  <a href="" class="quiz-inspect"><p>Take Quiz</p></a>
+  <a href="" class="quiz-add"><p>Add Quiz</p></a>
+  <a href="" class="quiz-edit"><p>Edit Quiz</p></a>
+  <a href="" class="quiz-delete"><p>Delete Quiz</p></a>
+  <a href="" class="score-check"><p>Check High Scores</p></a>
 </script>
 
-<script type="text/template" class="edit-template">
+<script type="text/template" class="add-template">
   
     <h3>Add Question/Answer</h3>
   <form>
@@ -96,5 +98,12 @@
   </ol>
 </script>
 
+<script type="text/template" class="edit-template">
+  <form>
+    <h3>Edit Quiz</h3>
+    <input type="text" placeholder="<%%= questions.title %>" class="quiz-title">
+    <input type="submit" class="quiz-edit">
+  </form>  
+</script>
 
 

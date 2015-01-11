@@ -36,8 +36,7 @@
     dispQuest('.quiz-edit-template'); 
 
     $('.question-display').on('click','.quiz-inspect',function(e) {
-      e.preventDefault();
-      var $id = $(this).data("id");  
+      e.preventDefault(); 
       dispQuest('.quiz-questions-template'); 
 
       $('.question-display').off();
@@ -68,7 +67,7 @@
       });  
     });
      
-    $('.question-display').on('click','.quiz-edit',function(e) {
+    $('.question-display').on('click','.quiz-add',function(e) {
       e.preventDefault();
       var inter = new Controllers.Intermediate($('.quizzes'));
       inter.showOptions(quest_controller,_this.questions);
@@ -78,6 +77,17 @@
       e.preventDefault();
       score_controller.showScores(quest_controller);
     })
+
+    $('.question-display').on('click','.quiz-edit',function(e) {
+      e.preventDefault();
+      quiz_controller.showEdit(_this.questions,quest_controller);
+    });
+
+    $('.question-display').on("click",'.quiz-delete',function(e) {
+      e.preventDefault();
+      quiz_controller.delete(quest_controller.id)
+      quiz_controller.showQuizzes();
+    });
       
  };
 
