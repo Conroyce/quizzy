@@ -47,14 +47,11 @@
         var quiz_id = _this.questions[quest_controller.cnt].quiz_id;
         var quest_id = _this.questions[quest_controller.cnt].id;
            
-        quest_controller.checkAnswer(quiz_id,quest_id,$ans,quest_controller,_this.questions.length); 
+        quest_controller.checkAnswer(_this.questions,$ans,quest_controller,score_controller,_this.questions.length); 
             
         // quest_controller.next() ??
 
         if (quest_controller.status == "end") {
-          
-          var $name = sessionStorage.name || "Guest";
-          score_controller.create(quest_controller.score,$name,_this.questions[0].quiz_id);
 
           setTimeout(function() { dispRes() },1000); // possible new view >
           setTimeout(function() { 
@@ -65,16 +62,14 @@
             
           },2500);                                   // possible new view <
              
-        } else { 
-          quest_controller.cnt++;  
+        } else {   
           setTimeout(function(){ dispQuest('.quiz-questions-template'); }, 1000);
         }
-        });  
+      });  
     });
      
     $('.question-display').on('click','.quiz-edit',function(e) {
       e.preventDefault();
-      
       var inter = new Controllers.Intermediate($('.quizzes'),quest_controller)
       inter.showOptions(quest_controller);
     });

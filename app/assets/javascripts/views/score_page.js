@@ -9,18 +9,27 @@
 
     var topTen = function() {
       var ans = [];
+      var res = [];
+      var cnt = 0;
       for (var i = 0; i < _view.scores.length; i ++) {
-        if (i < 10) {
-           ans.push(_view.scores[i]);
-        } else {
-          ans = ans.sort(function(a,b) {return b-a});
-          if (ans[9] < _view.scores[i].score) {
-            ans.push(_view.scores[i]);
-            ans = ans.sort(function(a,b) {return b-a});
-          }
-        } 
+        ans.push([_view.scores[i].id,_view.scores[i].score])
       }
-      return ans;
+      
+      ans.sort(function(a,b) {return b[1] - a[1]})
+
+      for (var j = 0; j < _view.scores.length; j++) {
+        for (var k = 0; k < _view.scores.length; k++) {   
+          if(cnt < 10 && ans[j][0] == _view.scores[k].id) {
+            res.push(_view.scores[k]);
+            cnt++;
+          } else if (cnt == 10) {
+            break;
+          }
+        }  
+          
+      }
+      console.log(res);
+      return res;
     };
     
     var topScores = topTen();

@@ -21,12 +21,6 @@
       var questView = new Views.Question($el, questions,_controller,quiz_control);
     });
   };
-  //questionview(question,controller)
-    //display question
-    //create listeners
-
-    //click submit
-    //show nextquestion
 
   QuestionsController.prototype.showNext = function(question,controller) {
     if (controller.status == "end") {
@@ -51,27 +45,27 @@
     var questView = new Views.Question(question,controller);
   };
 
-  QuestionsController.prototype.checkAnswer = function(quiz_id,quest_id,ans,control,len) {
-    Models.Question.check(quiz_id,quest_id,ans,function(res) {
-      console.log(res.correct+" "+control.cnt);
+  QuestionsController.prototype.checkAnswer = function(quest,ans,quest_control,score_control,len) {
+    Models.Question.check(quest[quest_control.cnt].quiz_id,quest[quest_control.cnt].id,ans,function(res) {
       if (res.correct) {
-        control.score++;
+        quest_control.score++;
         $('.question-display').append("<p>Correct!</p>")     
       } else {
         $('.question-display').append("<p>Incorrect.</p>")      
       }
+      quest_control.cnt++;
 
-      if (control.cnt == len-1) {
-          control.status = "end"; 
-      } else {
-      }   
+      if (quest_control.cnt == len-1) {
+          quest_control.status="end";
+          var $name = sessionStorage.name || "Guest"; 
+          score_control.create(quest_control.score,$name,quest_control.id)
+      }    
     });
   }; 
 
   QuestionsController.prototype.createScore = function(score,user,quiz_id) {
     Models.Question.createScore(score,user,quiz_id);
   };
-
 
 
   window.Controllers = window.Controllers || {};
