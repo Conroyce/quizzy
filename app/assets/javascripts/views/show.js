@@ -70,13 +70,13 @@
      
     $('.question-display').on('click','.quiz-edit',function(e) {
       e.preventDefault();
-      var inter = new Controllers.Intermediate($('.quizzes'),quest_controller)
-      inter.showOptions(quest_controller);
+      var inter = new Controllers.Intermediate($('.quizzes'));
+      inter.showOptions(quest_controller,_this.questions);
     });
 
     $('.question-display').on('click','.score-check',function(e) {
       e.preventDefault();
-      score_controller.showScores(_this.questions[0].id,quest_controller);
+      score_controller.showScores(quest_controller);
     })
       
  };

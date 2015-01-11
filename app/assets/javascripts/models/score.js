@@ -7,6 +7,7 @@
 
   Score.fetch = function(quiz_id,cb) {
     $.get("/scores",$.param({quiz_id: quiz_id}),function(scores) {
+      console.log(scores)
       var scoreObjs = scores.map(function(scoreData) {
         return new Score(scoreData);
       });

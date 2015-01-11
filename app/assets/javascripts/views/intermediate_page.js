@@ -1,12 +1,14 @@
 (function() {
-  var intermediateView = function(quest_controller) {
+  var intermediateView = function($el,controller,quest_controller,questions) {
+    this.questions = questions;
+    var _this = this;
 
     var dispQuest = function(temp) {               
         $('.question-display').html("");
         var template = $(temp).html();
         var uncompiledTemplate = _.template(template);
         var $html = $(uncompiledTemplate({
-          questions:_this.questions[quest_controller.cnt]
+          questions: _this.questions[quest_controller.cnt]
         }));
         var $el = $($html); 
         $('.question-display').append($el);         
