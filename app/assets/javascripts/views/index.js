@@ -40,7 +40,10 @@
 
     $html.children('.quiz').on('click', function() {
       var id = $(this).data("id");
-
+      var quiz_title = $(this).html();
+      if (quiz_controller.title == "") {
+        quiz_controller.title = quiz_title;
+      }
       var questionsController = new Controllers.Question(_view.element, id); 
       questionsController.showFirstQuestion(quiz_controller);
     });

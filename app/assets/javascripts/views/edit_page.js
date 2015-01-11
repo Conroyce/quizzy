@@ -8,12 +8,21 @@
         var template = $(temp).html();
         var uncompiledTemplate = _.template(template);
         var $html = $(uncompiledTemplate({
-          questions: _this.questions[quest_controller.cnt]
+          questions: _this.questions[quest_controller.cnt],
+          quiz: quiz_controller
         }));
         var $el = $($html); 
         $('.question-display').append($el);         
     };
     dispQuest($('.edit-template'));
+
+    $('.question-display').on('click','.quiz-edit-submit',function(e) {
+      e.preventDefault();
+      var $title = $('.quiz-title').val();
+      console.log($title);
+      quiz_controller.update(quest_controller.id,$title);
+      quiz_controller.showQuizzes();
+    })
   };
 
   window.Views = window.Views || {};
