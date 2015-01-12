@@ -58,7 +58,7 @@
 
 <script type="text/template" class="quiz-edit-template">
   <a href="" class="quiz-inspect"><p>Take Quiz</p></a>
-  <a href="" class="quiz-add"><p>Add Quiz</p></a>
+  <a href="" class="question-add"><p>Add Question</p></a>
   <a href="" class="quiz-edit"><p>Edit Quiz</p></a>
   <a href="" class="quiz-delete"><p>Delete Quiz</p></a>
   <a href="" class="score-check"><p>Check High Scores</p></a>
@@ -102,9 +102,30 @@
 <h3>Edit Quiz</h3>
   <form>
     <h4>Quiz Title</h4>
-    <input type="text" placeholder="<%%= quiz.title %>" class="quiz-title">
+    <input type="text" value="<%%= quiz.title %>" class="quiz-title">
     <input type="submit" class="quiz-edit-submit">
   </form>  
+  <form>
+    <h4>Questions</h4>
+    <%% _.each(questions,function(question) { %>
+      <%% if (question.question_type == "blank") { %>
+        Question <%%= question.id %>: <input type="text" data-id="<%%= question.id %>" value="<%%= question.question %>" class="question-question"><br>
+        Answer: <input type="text" value="<%%= question.answer %>" class="question-ans"><br>
+      <%% } else { %>
+        Question <%%= question.id %>: <input type="text" data-id="<%%= question.id %>" value="<%%= question.question %>" class="question-question"><br>
+        Answer: <input type="text" value="<%%= question.answer %>" class="question-ans"><br>
+        <%% var i = 0; %>
+        <%% _.each(question.choices,function(choice) { %>
+          Choice: <input type="text" data-choice="<%%= i %>" value="<%%= choice %>" class="question-choice"><br>
+          <%% i++; %>
+        <%% }); %>
+      <%% } %> 
+        <input type="submit" data-id="<%%= question.id %>" class="quest-edit-delete" value="Delete Question"><br>
+    <%% }); %>
+
+    <input type="submit" class="quest-edit-submit">
+  </form>
+
 </script>
 
 

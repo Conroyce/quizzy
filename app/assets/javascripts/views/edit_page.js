@@ -8,7 +8,7 @@
         var template = $(temp).html();
         var uncompiledTemplate = _.template(template);
         var $html = $(uncompiledTemplate({
-          questions: _this.questions[quest_controller.cnt],
+          questions: _this.questions,
           quiz: quiz_controller
         }));
         var $el = $($html); 
@@ -23,7 +23,16 @@
       quiz_controller.update(quest_controller.id,$title);
       quiz_controller.showQuizzes();
     })
+
+    $('.question-display').on('click','.quest-edit-delete',function(e) {
+      e.preventDefault();
+      var $quest_id = $(this).data("id"); 
+      quest_controller.delete($quest_id);
+      quiz_controller.showQuizzes();
+    });
   };
+
+  
 
   window.Views = window.Views || {};
   window.Views.Edit = editView;

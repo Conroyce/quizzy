@@ -31,8 +31,7 @@
         if (cb) {
           return cb(res);
         }
-      }
-      
+      }  
     });
   };
 
@@ -48,7 +47,15 @@
       });
   };
 
-
+  Question.delete = function(quiz_id,quest_id,cb) {
+    $.ajax({
+      method: "DELETE",
+      url: "/quizzes/"+quiz_id+"/questions/"+quest_id,
+      success: function(data) {
+        console.log(data);
+      }
+    });
+  };
 
   window.Models = window.Models || {};
   window.Models.Question = Question;

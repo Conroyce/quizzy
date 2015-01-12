@@ -67,7 +67,7 @@
       });  
     });
      
-    $('.question-display').on('click','.quiz-add',function(e) {
+    $('.question-display').on('click','.question-add',function(e) {
       e.preventDefault();
       var inter = new Controllers.Intermediate($('.quizzes'));
       inter.showOptions(quest_controller,_this.questions);

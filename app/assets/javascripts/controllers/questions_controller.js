@@ -63,6 +63,11 @@
     });
   }; 
 
+  QuestionsController.prototype.delete = function(quest_id) {
+    var _this = this;
+    Models.Question.delete(_this.id,quest_id)
+  };
+
   QuestionsController.prototype.createScore = function(score,user,quiz_id) {
     Models.Question.createScore(score,user,quiz_id);
   };
